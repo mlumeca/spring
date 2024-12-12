@@ -11,15 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Monument {
-
     private Long id;
-    private String code;
+    private String isoCode;
     private String countryName;
     private String cityName;
-    // localizacion - latitud
-    // localizacion - longitud
+    private Double latitude;
+    private Double longitude;
     private String name;
     private String description;
     private String imgPath;
-
 }
