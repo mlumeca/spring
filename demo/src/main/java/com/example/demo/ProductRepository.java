@@ -1,9 +1,12 @@
 package com.example.demo;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
@@ -34,7 +37,7 @@ public class ProductRepository {
     }
 
     public Optional<Product> edit(Long id, Product newValue) {
-        return Optional.ofNullable(products.computeIfPresent(id, (k, v) -> {
+        return Optional.ofNullable(products.computeIfPresent(id, (k, v) -> { //k - clave, v - valor
             v.setName(newValue.getName());
             v.setPrice(newValue.getPrice());
             return v;
@@ -44,4 +47,6 @@ public class ProductRepository {
     public void delete(Long id) {
         products.remove(id);
     }
+
+
 }
