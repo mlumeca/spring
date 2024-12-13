@@ -1,10 +1,10 @@
 package com.example.monumentos;
 
+import com.example.monumentos.model.Monument;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
 public class MonumentRepository {
