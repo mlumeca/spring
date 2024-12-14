@@ -1,22 +1,25 @@
 package com.example.ejerciciodto.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 
 public class Producto {
-    private Long id;
-    private String nombre;
-    private String desc;
-    private Double pvp;
-    private List<String> imagenes;
-    private String categoria;
+    public Long id;
+    public String nombre;
+    public String desc;
+    public Double pvp;
+    public List<String> imagenes;
+    public Categoria categoria;
+
+    public Producto(Long id, String nombre, String desc, Double pvp, List<String> imagenes, Categoria categoria) {
+        this.id = id;
+        this.nombre = nombre;
+        this.desc = desc;
+        this.pvp = pvp;
+        this.imagenes = imagenes;
+        this.categoria = categoria;
+    }
 }
