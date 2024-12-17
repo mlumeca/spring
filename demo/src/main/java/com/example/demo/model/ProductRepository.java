@@ -1,11 +1,9 @@
-package com.example.demo;
+package com.example.demo.model;
+
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -33,11 +31,10 @@ public class ProductRepository {
 
     public List<Product> getAll() {
         return List.copyOf(products.values());
-        // crea una lista como copia del metodo no modificable
     }
 
     public Optional<Product> edit(Long id, Product newValue) {
-        return Optional.ofNullable(products.computeIfPresent(id, (k, v) -> { //k - clave, v - valor
+        return Optional.ofNullable(products.computeIfPresent(id, (k, v) -> {
             v.setName(newValue.getName());
             v.setPrice(newValue.getPrice());
             return v;
@@ -48,5 +45,29 @@ public class ProductRepository {
         products.remove(id);
     }
 
+    public List<Product> query(double maxPrice, String sortDirection) {
+        List<Product> data = new ArrayList<>(products.values());
+        List<Product> result;
+
+        if (maxPrice < 0) {
+            result = data;
+        } else {
+            result = data
+                    .stream()
+                    .filter(p -> p.getPrice() <= maxPrice)
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
+
+        if (sortDirection.equalsIgnoreCase("asc"))
+            result.sort(Comparator.comparing(Product::getName));
+        else if (sortDirection.equalsIgnoreCase("desc"))
+            result.sort(Comparator.comparing(Product::getName).reversed());
+
+        return Collections.unmodifiableList(result);
+    }
+
+
+
 
 }
+

@@ -1,7 +1,7 @@
 package com.example.monumentos.controller;
 
-import com.example.monumentos.MonumentRepository;
 import com.example.monumentos.model.Monument;
+import com.example.monumentos.model.MonumentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

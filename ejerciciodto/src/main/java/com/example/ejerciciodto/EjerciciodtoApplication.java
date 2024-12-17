@@ -16,7 +16,6 @@ public class EjerciciodtoApplication {
 		SpringApplication.run(EjerciciodtoApplication.class, args);
 
 		// APARTADO 1
-
 		// Creación de la dirección
 		Direccion direccion = new Direccion(1L, "AAAvenida",
 				"de todos los santísimos barcos", "número 8", 8,

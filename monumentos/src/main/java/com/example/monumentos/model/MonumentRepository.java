@@ -1,6 +1,5 @@
-package com.example.monumentos;
+package com.example.monumentos.model;
 
-import com.example.monumentos.model.Monument;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
@@ -62,7 +61,27 @@ public class MonumentRepository {
         return List.copyOf(monuments.values());
     }
 
+    public Optional<Monument> edit (Long id, Monument newValue) {
+        return Optional.ofNullable(monuments.computeIfPresent( id, (k, v)-> {
+            v.setIsoCode(newValue.getIsoCode());
+            v.setCountryName(newValue.getCountryName());
+            v.setCityName(newValue.getCityName());
+            v.setLatitude(newValue.getLatitude());
+            v.setLongitude(newValue.getLongitude());
+            v.setName(newValue.getName());
+            v.setDescription(newValue.getDescription());
+            v.setImgPath(newValue.getImgPath());
+            return v;
+        }));
+    }
+
     public void delete(Long id) {
         monuments.remove(id);
     }
+
+    public List<Monument> query() {
+        List<Monument> data = new ArrayList<>(monuments.values());
+        return List.copyOf(data);
+    }
+
 }
